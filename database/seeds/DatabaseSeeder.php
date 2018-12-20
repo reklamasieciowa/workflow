@@ -33,22 +33,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //create jobs with attached tasks
-        $jobs = factory(App\Job::class, 50)->create()->each(function($j) {
-           $j->tasks()->save(factory(App\Task::class, rand(2,5))->make());
-        });
+        //$rand_number = rand(3,7);
+
+        // $jobs = factory(App\Job::class)->create()->each(function($j) {
+        //   for($i=0;$i<rand(3,7);$i++) {
+        //     $j->tasks()->save(factory(App\Task::class)->make());
+        //   }
+        // });
 
         //create user roles
-        $roles = factory(App\roles::class)->create([
+        $roles = factory(App\Role::class)->create([
             'name' => 'admin'
         ]);
 
-        $roles = factory(App\roles::class)->create([
+        $roles = factory(App\Role::class)->create([
             'name' => 'worker'
         ]);
 
-        //create users
+        //create users with jobs and tasks
         $users = factory(App\User::class, 10)->create()->each(function($u) {
         	$u->roles()->attach(2);
+
+          $u->jobs()->saveMany(factory(App\Job::class,3)->make()
+                // ->each(function($j) {
+                //       $j->tasks()->saveMany(factory(App\Task::class,5)->make());
+                //  })
+          );
+
         });
 
         // NOT WORKING!!!!
