@@ -1,14 +1,52 @@
-
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+.card-body {
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+	.card-progress {
+		padding-top: 0!important;
+
+		ul {
+			margin-bottom: 0;
+			height: 20px;
+
+			li {
+				width: 100%;
+			}
+
+			.progress {
+				height: 20px;
+				border-radius: 0;
+				margin-bottom: 0;
+
+				.progress-bar {
+					height: 20px;
+					color: #000;
+				}
+			}
+		}
+	}
 }
+
+.card-status {
+	padding: 5px!important;
+
+	ul {
+		margin-bottom: 0!important;
+	}
+
+	.fa {
+		font-size: 1.3rem;
+		position: relative;
+		top: 3px;
+	}
+}
+
+.job-status {
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: right;
+	color: #fff;
+}
+

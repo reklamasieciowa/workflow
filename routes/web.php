@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/jobs/{status}', 'HomeController@index')->name('home'); //todo in-progress done
