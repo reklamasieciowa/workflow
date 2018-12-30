@@ -24,9 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $jobs = Job::orderBy('deadline', 'ASC')->get();
-        $total = Job::count();
 
-        return view('front.home', compact('jobs', 'total'));
     }
 }

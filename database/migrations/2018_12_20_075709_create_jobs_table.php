@@ -18,10 +18,10 @@ class CreateJobsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->dateTime('deadline');
-            $table->dateTime('finished')->nullable();
-            $table->integer('status_id')->default('0');
-            $table->integer('user_id');
+            $table->unsignedInteger('status_id')->default('0');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

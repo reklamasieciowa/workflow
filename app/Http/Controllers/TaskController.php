@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use DB;
 
 class TaskController extends Controller
 {
@@ -70,6 +71,31 @@ class TaskController extends Controller
     public function update(Request $request, Task $task)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function change_status(Task $task)
+    {
+        $max_id = DB::table('statuses')->max('id');
+
+        if($task->status_id < $max_id)
+        {
+            $task->status_id += 1;
+            $task->save();
+        }
+        else 
+        {
+            $task->status_id = 1;
+            $task->save();
+        }
+
+        return redirect()->back();
     }
 
     /**

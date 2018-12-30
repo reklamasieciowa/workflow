@@ -17,9 +17,10 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('status_id')->default(0);
-            $table->integer('job_id');
+            $table->unsignedInteger('status_id')->default(0);
+            $table->unsignedInteger('job_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,8 +1,6 @@
 @import 'variables';
 
 .card-body {
-
-
 	.card-progress {
 		padding-top: 0!important;
 
@@ -50,3 +48,15 @@
 	color: #fff;
 }
 
+.task {
+	border-top: 1px solid $light_gray;
+
+	p {
+		margin-bottom: 0;
+	}
+
+	i {
+		position: relative;
+		top: 5px;
+	}
+}

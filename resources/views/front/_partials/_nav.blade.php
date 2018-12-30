@@ -1,4 +1,4 @@
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark default-color navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -10,8 +10,31 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs') }}">Projekty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['1']) }}"><i class="fa fa-play-circle"></i> Do zrobienia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['2']) }}"><i class="fa fa-hourglass-half"></i> W trakcie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}"><i class="fa fa-check"></i> Skończone</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['4']) }}"><i class="fa fa-check-circle"></i> Zatwierdzone</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}">Kosz</a>
+                        </li>
                     </ul>
+                    <form class="form-inline">
+                        <div class="md-form my-0">
+                          <input class="form-control mr-sm-2" type="text" placeholder="Szukaj" aria-label="Szukaj">
+                        </div>
+                        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Szukaj</button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

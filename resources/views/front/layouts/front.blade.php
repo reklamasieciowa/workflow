@@ -25,15 +25,21 @@
 <body>
     <div id="app">
         <header id="header">
-            @yield('nav')
+            @include('front._partials._nav')
         </header>
 
-        <main id="main">
+        <main id="main" class="my-5">
             @yield('content')
         </main>
 
-        <footer id="footer">
-            @yield('footer')
+        <footer class="page-footer font-small default-color">
+
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3 text-white">
+            {{ config('app.name', 'Laravel') }} © @php echo date('Y'); @endphp 
+          </div>
+          <!-- Copyright -->
+
         </footer>
     </div>
 

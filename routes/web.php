@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/jobs', 'JobController@index')->name('jobs');
+Route::get('/jobs/{status}', 'JobController@index')->name('jobs_by_status');
 
-//Route::get('/jobs/{status}', 'HomeController@index')->name('home'); //todo in-progress done
+Route::get('/job/{job}', 'JobController@show')->name('job');
+Route::get('/job/change-status/{job}', 'JobController@change_status')->name('job_status_change');
+
+
+Route::get('/task/change-status/{task}', 'TaskController@change_status')->name('task_status_change');

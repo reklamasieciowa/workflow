@@ -7,6 +7,6 @@ $factory->define(App\Job::class, function (Faker $faker) {
         'name' => $faker->sentence,
         'description' => $faker->sentence,
 		'deadline' => $faker->dateTimeBetween($startDate = '-1 week', $endDate = '+3 months', $timezone = date_default_timezone_get()),
-		'status_id' => $faker->biasedNumberBetween($min = 1, $max = 3),
+		'status_id' => $faker->biasedNumberBetween($min = 1, $max = 4),
     ];
 });

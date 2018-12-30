@@ -44,3 +44,16 @@
   color: #fff;
 }
 
+.task {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.task p {
+  margin-bottom: 0;
+}
+
+.task i {
+  position: relative;
+  top: 5px;
+}
+

@@ -45,4 +45,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function hasRole($id)
+    {
+        foreach($this->roles as $role) {
+            if($role->id === $id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isAdmin()
+    {
+        if($this->hasRole(1)) {
+            return true;
+        }
+        return false;
+    }
 }

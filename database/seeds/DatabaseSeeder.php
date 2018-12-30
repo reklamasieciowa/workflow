@@ -21,25 +21,20 @@ class DatabaseSeeder extends Seeder
 
         //create statuses
         $status = factory(App\Status::class)->create([
-            'name' => 'to do'
+            'name' => 'Do zrobienia',
         ]);
 
         $status = factory(App\Status::class)->create([
-            'name' => 'in progress'
+            'name' => 'W trakcie'
         ]);
 
         $status = factory(App\Status::class)->create([
-            'name' => 'done'
+            'name' => 'Zrobione'
         ]);
 
-        //create jobs with attached tasks
-        //$rand_number = rand(3,7);
-
-        // $jobs = factory(App\Job::class)->create()->each(function($j) {
-        //   for($i=0;$i<rand(3,7);$i++) {
-        //     $j->tasks()->save(factory(App\Task::class)->make());
-        //   }
-        // });
+        $status = factory(App\Status::class)->create([
+            'name' => 'Zatwierdzone'
+        ]);
 
         //create user roles
         $roles = factory(App\Role::class)->create([
@@ -61,21 +56,6 @@ class DatabaseSeeder extends Seeder
           );
 
         });
-
-        // NOT WORKING!!!!
-        
-  //       $users = factory(App\User::class, 10)->create()->each(function($u) {
-		//    $u->roles()->attach(2);
-  //          $u->jobs()->save(factory(App\jobs::class, rand(1,5))->create()
-  //               ->each(function($j) {
-  //                   for($i = 0; $i < rand(2,6); $i++) {
-  //                       $j->tasks()->save(factory(App\Task::class)->create([
-  //                           'jobs_id' => $j->id,
-  //                       ]));
-  //                   }
-  //               })
-  //           );
-		// });
 
         //create admin user id 31
         $admin = factory(App\User::class)->create([
