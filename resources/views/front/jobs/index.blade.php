@@ -77,11 +77,6 @@
       <!-- Card footer -->
       <div class="rounded-bottom text-center pt-3 card-status grey lighten-4">
         <ul class="list-unstyled list-inline font-small">
-          <li class="list-inline-item card-text pr-2 deadline">
-            @foreach($job->user as $user)
-            <i class="fa fa-user-circle m-2"></i> {{$user->name}}
-            @endforeach
-          </li>
           <li class="list-inline-item card-text pr-2 deadline"><i class="fa fa-stop-circle m-2"></i> {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false)}}
           </li>
         </ul>
@@ -112,6 +107,10 @@
   </div>
 
 </div>
-
+<div class="container">
+  <div class="row">
+    {{ $jobs->links() }}
+  </div>
+</div>
 
 @endsection

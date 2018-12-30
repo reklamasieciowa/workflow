@@ -52,41 +52,46 @@ $progress = round(($job->tasks->where("status_id","3")->count()+$job->tasks->whe
 						<div class="deadline col-6">
 							<i class="fa fa-stop-circle fa-lg m-2"></i> {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false)}}
 						</div>
-
-						<div class="col-6 user">
-							<ul>
-							@foreach($job->user as $user)
-							<li><i class="fa fa-user-circle fa-lg m-2"></i> {{ $user->name }}</li>
-							@endforeach
-							</ul>
-						</div>
 					</div>
 				</div>
 
 			</div>
 
-			<h4 class="mt-3">Zadania:</h4>
-			<ul class="list-group">
-				@foreach($job->tasks as $task)
-				<li class="list-group-item">
-					<a href="{{ route('task_status_change', [$task->id]) }}" class="text-dark">
-						<div class="md-v-line"></div>
-						@if($task->status_id == 1)
-						<i class="fa fa-play-circle fa-lg text-danger mr-3"></i>
-						@elseif($task->status_id == 2)
-						<i class="fa fa-hourglass-half fa-lg text-warning mr-3"></i>
-						@elseif($task->status_id == 3)
-						<i class="fa fa-check fa-lg text-success mr-3"></i>
-						@else
-						<i class="fa fa-check-circle fa-lg mr-3 text-success"></i>
-						@endif
+			<div class="col-lg-12">
+				<h5 class="mt-3">Zadania:</h5>
+				<ul class="list-group">
+					@foreach($job->tasks as $task)
+					<li class="list-group-item">
+						<a href="{{ route('task_status_change', [$task->id]) }}" class="text-dark">
+							<div class="md-v-line"></div>
+							@if($task->status_id == 1)
+							<i class="fa fa-play-circle fa-lg text-danger mr-3"></i>
+							@elseif($task->status_id == 2)
+							<i class="fa fa-hourglass-half fa-lg text-warning mr-3"></i>
+							@elseif($task->status_id == 3)
+							<i class="fa fa-check fa-lg text-success mr-3"></i>
+							@else
+							<i class="fa fa-check-circle fa-lg mr-3 text-success"></i>
+							@endif
 
-						<strong>{{ $task->name }}</strong>
-						{{ $task->description }}
-					</a>
-				</li>
-				@endforeach
-			</ul>
+							<strong>{{ $task->name }}</strong>
+							{{ $task->description }}
+						</a>
+					</li>
+					@endforeach
+				</ul>
+			</div>
+
+			<div class="col-12 users mt-4">
+				<h5 class="mt-3">Użytkownicy:</h5>
+				<ul class="list-group">
+				@forelse($job->user as $user)
+				<li class="list-group-item"><i class="fa fa-user-circle fa-lg m-2"></i> {{ $user->name }}</li>
+				@empty
+				<li class="list-group-item">Brak użytkowników.</li>
+				@endforelse
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

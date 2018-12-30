@@ -20,7 +20,7 @@
                             <a class="nav-link" href="{{ route('jobs_by_status', ['2']) }}"><i class="fa fa-hourglass-half"></i> W trakcie</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}"><i class="fa fa-check"></i> Skończone</a>
+                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}"><i class="fa fa-check"></i> Zrobione</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('jobs_by_status', ['4']) }}"><i class="fa fa-check-circle"></i> Zatwierdzone</a>

@@ -26,6 +26,8 @@ class JobController extends Controller
      */
     public function index($status = null)
     {
+        $total = count(Job::all());
+
         if(!Auth::user()->isAdmin())
         {
             $jobs = Auth::user()->jobs
@@ -39,10 +41,10 @@ class JobController extends Controller
                 ->when($status, function ($query, $status) {
                         return $query->where('status_id', $status);
                     })
-                ->get();
+                ->paginate(15);
         }
 
-        $total = count($jobs);
+        
 
         return view('front.jobs.index', compact('jobs', 'total'));
     }
