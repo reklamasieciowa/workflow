@@ -45,15 +45,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'worker'
         ]);
 
+        $jobs = factory(App\Job::class,50)->create();
+
         //create users with jobs and tasks
-        $users = factory(App\User::class, 10)->create()->each(function($u) {
+        $users = factory(App\User::class, 10)->create()->each(function($u) use ($jobs) {
         	$u->roles()->attach(2);
 
-          $u->jobs()->saveMany(factory(App\Job::class,3)->make()
+          $u->jobs()->attach(
+            $jobs->random(rand(1, 10))->pluck('id')->toArray()
+          );
+
                 // ->each(function($j) {
                 //       $j->tasks()->saveMany(factory(App\Task::class,5)->make());
                 //  })
-          );
+          
 
         });
 

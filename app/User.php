@@ -38,12 +38,7 @@ class User extends Authenticatable
 
     public function jobs()
     {
-        return $this->hasMany(Job::class);
-    }
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class);
+        return $this->belongsToMany(Job::class);
     }
 
     public function hasRole($id)

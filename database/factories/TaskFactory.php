@@ -7,6 +7,6 @@ $factory->define(App\Task::class, function (Faker $faker) {
         'name' => $faker->sentence,
         'description' => $faker->sentence,
         'status_id' => $faker->biasedNumberBetween($min = 1, $max = 4),
-        'job_id' => $faker->biasedNumberBetween($min = 1, $max = 30),
+        'job_id' => $faker->biasedNumberBetween($min = 1, $max = 50),
     ];
 });

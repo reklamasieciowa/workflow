@@ -26,16 +26,21 @@ class JobController extends Controller
      */
     public function index($status = null)
     {
-
-        $jobs = Job::with('status')
-                ->unless(Auth::user()->isAdmin(), function ($query, $status) {
-                    return $query->where('user_id', Auth::user()->id);
-                })
+        if(!Auth::user()->isAdmin())
+        {
+            $jobs = Auth::user()->jobs
                 ->when($status, function ($query, $status) {
                     return $query->where('status_id', $status);
-                })
-                ->orderBy('deadline', 'ASC')
+                });
+        } 
+        else
+        {
+            $jobs = Job::orderBy('deadline', 'ASC')
+                ->when($status, function ($query, $status) {
+                        return $query->where('status_id', $status);
+                    })
                 ->get();
+        }
 
         $total = count($jobs);
 

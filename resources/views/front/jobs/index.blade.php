@@ -11,9 +11,15 @@
   <!-- Grid column -->
   <div class="card-columns">
     @forelse($jobs as $job)
-    @php
-    $progress = round(($job->tasks->where("status_id","3")->count()+$job->tasks->where("status_id","4")->count()) / $job->tasks->count() * 100)
-    @endphp
+
+    @if($job->tasks->count())
+      @php
+        $progress = round($job->tasks->where("status_id","4")->count() / $job->tasks->count() * 100)
+      @endphp
+    @else
+       $progress = 0;
+    @endif
+
     <!-- Card -->
     <div class="card my-3">
       <!-- Card content -->
@@ -64,7 +70,6 @@
                 " role="progressbar" style="width: {{$progress}}%;" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
               </div>
             </li>
-            <!--       <li class="list-inline-item" style="width: 100%;"><i class="fa fa-user-circle grey-text m-2"></i>{{$job->user->name}}</li> -->
           </ul>
         </div>
       </div>
@@ -73,7 +78,9 @@
       <div class="rounded-bottom text-center pt-3 card-status grey lighten-4">
         <ul class="list-unstyled list-inline font-small">
           <li class="list-inline-item card-text pr-2 deadline">
-            <i class="fa fa-user-circle m-2"></i> {{$job->user->name}}
+            @foreach($job->user as $user)
+            <i class="fa fa-user-circle m-2"></i> {{$user->name}}
+            @endforeach
           </li>
           <li class="list-inline-item card-text pr-2 deadline"><i class="fa fa-stop-circle m-2"></i> {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false)}}
           </li>

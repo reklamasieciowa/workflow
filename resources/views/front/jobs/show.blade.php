@@ -54,7 +54,11 @@ $progress = round(($job->tasks->where("status_id","3")->count()+$job->tasks->whe
 						</div>
 
 						<div class="col-6 user">
-							<i class="fa fa-user-circle fa-lg m-2"></i> {{ $job->user->name }}
+							<ul>
+							@foreach($job->user as $user)
+							<li><i class="fa fa-user-circle fa-lg m-2"></i> {{ $user->name }}</li>
+							@endforeach
+							</ul>
 						</div>
 					</div>
 				</div>
