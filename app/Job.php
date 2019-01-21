@@ -2,13 +2,24 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Task;
 use App\Status;
+use App\Task;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = [
+        'deadline', 'deleted_at',
+    ];
+
+    protected $fillable = [
+        'name', 'description', 'deadline', 'status_id',
+    ];
+
     public function user()
     {
     	return $this->belongsToMany(User::class);

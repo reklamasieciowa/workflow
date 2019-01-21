@@ -1,42 +1,58 @@
-.card-body .card-progress {
+.text-black-30 {
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.navbar-nav .dropdown-divider {
+  margin: 0 0 0.5rem 0;
+}
+
+.jobs .card-body .card-progress {
   padding-top: 0 !important;
 }
 
-.card-body .card-progress ul {
+.jobs .card-body .card-progress ul {
   margin-bottom: 0;
   height: 20px;
 }
 
-.card-body .card-progress ul li {
+.jobs .card-body .card-progress ul li {
   width: 100%;
 }
 
-.card-body .card-progress ul .progress {
+.jobs .card-body .card-progress ul .progress {
   height: 20px;
   border-radius: 0;
   margin-bottom: 0;
 }
 
-.card-body .card-progress ul .progress .progress-bar {
+.jobs .card-body .card-progress ul .progress .progress-bar {
   height: 20px;
   color: #000;
 }
 
-.card-status {
+.jobs .card-status {
   padding: 5px !important;
 }
 
-.card-status ul {
+.jobs .card-status ul {
   margin-bottom: 0 !important;
 }
 
-.card-status .fa {
-  font-size: 1.3rem;
+.jobs .card-status .fa {
+  font-size: 1rem;
   position: relative;
   top: 3px;
 }
 
-.job-status {
+.jobs .jobs-trashed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+  color: #fff;
+}
+
+.jobs .jobs-status {
   position: absolute;
   top: 0;
   right: 0;
@@ -44,16 +60,27 @@
   color: #fff;
 }
 
-.task {
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+.jobs .actions .btn:first-child {
+  border-bottom-left-radius: 10em;
 }
 
-.task p {
+.jobs .actions .btn:last-child {
+  border-bottom-right-radius: 10em;
+}
+
+.job .task p {
   margin-bottom: 0;
 }
 
-.task i {
-  position: relative;
-  top: 5px;
+.job .task a {
+  margin: 0;
+}
+
+.job .users a {
+  margin: 0;
+}
+
+.invalid-feedback {
+  display: block;
 }
 

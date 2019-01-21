@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         //create tasks
         $tasks = factory(App\Task::class, 250)->create();
 
+        //create checklist
+        $checklist = factory(App\Checklist::class, 20)->create();
+
         //create statuses
         $status = factory(App\Status::class)->create([
             'name' => 'Do zrobienia',

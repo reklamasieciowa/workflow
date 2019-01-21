@@ -3,31 +3,37 @@
 @section('content')
 <div class="container pt-4">
 
- <h2>Wszystkie projekty: {{$total}}</h2>
-
- <div class="row ">
-
-
+ <div class="row">
+     <div class="col-lg-12">
+      <h2>Wszystkie projekty: {{$total}} <a href="#" class="text-muted"><i class="fas fa-grip-horizontal mx-2"></i></a> <a href="#" class="text-muted"><i class="fas fa-list"></i></a></h2>
+    </div>
+ </div>
+<div class="row">
+ <div class="card-columns jobs">
   <!-- Grid column -->
-  <div class="card-columns">
     @forelse($jobs as $job)
 
     @if($job->tasks->count())
       @php
-        $progress = round($job->tasks->where("status_id","4")->count() / $job->tasks->count() * 100)
+        $progress = round(($job->tasks->where("status_id","3")->count() + $job->tasks->where("status_id","4")->count()) / $job->tasks->count() * 100)
       @endphp
     @else
+      @php
        $progress = 0;
+      @endphp
     @endif
 
     <!-- Card -->
-    <div class="card my-3">
-      <!-- Card content -->
-      <div class="card-body">
-        <div class="job-status">
+    <div class="card mt-4 mb-0">
+        @if($job->trashed())
+          <div class="jobs-trashed">
+            <i class="fa fa-trash-alt text-danger fa-lg m-2"></i>
+          </div>
+        @endif
+        <div class="jobs-status">
           <a href="{{ route('job_status_change', [$job->id]) }}">
             @if($job->status_id == 1)
-            <i class="fa fa-play-circle fa-lg m-2 text-danger"></i>
+            <i class="far fa-play-circle fa-lg m-2 text-danger"></i>
             @elseif($job->status_id == 2)
             <i class="fa fa-hourglass-half fa-lg m-2 text-warning"></i>
             @elseif($job->status_id == 3)
@@ -37,8 +43,12 @@
             @endif
           </a>
         </div>
-        <!-- Title -->
-        <h4 class="card-title">{{$job->name}}</h4>
+      <!-- Card content -->
+        <div class="card-header pt-3">
+           <h4 class="card-title mt-3">{{$job->name}}</h4>
+        </div>
+  
+      <div class="card-body">
 
         <!-- Text -->
         <p class="card-text">{{$job->description}}</p>
@@ -75,18 +85,34 @@
       </div>
 
       <!-- Card footer -->
-      <div class="rounded-bottom text-center pt-3 card-status grey lighten-4">
+      <div class="card-footer text-center pt-3 card-status grey lighten-4">
         <ul class="list-unstyled list-inline font-small">
-          <li class="list-inline-item card-text pr-2 deadline"><i class="fa fa-stop-circle m-2"></i> {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false)}}
+          <li class="list-inline-item card-text pr-2 deadline">
+              @if(Carbon\Carbon::parse($job->deadline)->diffInDays(false, false) > 0)
+                <span class="font-weight-bold">
+                  <i class="fas fa-skull-crossbones text-danger fa-lg m-2"></i>
+                  {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false, false, 2)}}
+                </span>
+              @elseif(Carbon\Carbon::parse($job->deadline)->diffInDays(false, false) == 0)
+                  <i class="fas fa-exclamation-triangle text-danger fa-lg m-2"></i>
+                  {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false, false, 2)}}
+              @elseif(Carbon\Carbon::parse($job->deadline)->diffInDays(false, false) == -1)
+                  <i class="fas fa-stopwatch light-blue-text fa-lg m-2"></i>
+                  {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false, false, 2)}}
+              @else
+                <i class="far fa-calendar-check m-2 fa-lg"></i>
+                {{Carbon\Carbon::parse($job->deadline)->diffForHumans(null, false, false, 2)}}
+              @endif
           </li>
         </ul>
-        
-        <div class="btn-group my-2" role="group" aria-label="Basic example">
-          <a href="{{ route('job', [$job->id]) }}"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></button></a>
-          <a href="#"><button type="button" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button></a>
-          <a href="#"><button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></a>
-        </div>
+      </div>
+    </div>
 
+    <div class="actions mt-0 text-center">
+      <div class="btn-group" role="group" aria-label="edycja">
+          <a href="{{ route('job', [$job->id]) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-eye text-white fa-lg"></i></a>
+          <a href="{{ route('job_edit', [$job->id]) }}" type="button" class="btn btn-default btn-sm"><i class="fas fa-pencil-alt text-white fa-lg"></i></i></a>
+          <a href="{{ route('job_destroy', [$job->id]) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-alt text-white fa-lg"></i></a>
       </div>
     </div>
 
@@ -94,22 +120,26 @@
 
 
     @empty
-    <div class="card text-center text-white bg-info mt-4">
+    <div class="card text-center text-white bg-info">
       <div class="card-header">:(</div>
       <div class="card-body">
         <h5 class="card-title">Aktualnie nie ma takich projektów.</h5>
-        <a class="btn btn-indigo mt-3" role="button">Zobacz wszystkie projekty</a>
+        <a href="{{ route('jobs') }}" class="btn btn-indigo mt-3" role="button">Zobacz wszystkie projekty</a>
       </div>
+    </div>
+
       @endforelse
 
       <!-- Grid column -->
     </div>
-  </div>
-
 </div>
-<div class="container">
+
+
+<div class="container mt-5">
   <div class="row">
-    {{ $jobs->links() }}
+    <div class="col-lg-12">
+      {{ $jobs->links() }}
+    </div>
   </div>
 </div>
 

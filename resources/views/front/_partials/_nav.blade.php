@@ -10,23 +10,32 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs') }}">Projekty</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownProjekty" data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="false"><i class="fas fa-tag mr-1"></i> Projekty</a>
+                            <div class="dropdown-menu dropdown-projekty" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="{{ route('jobs') }}"><i class="fas fa-tag text-info mr-1"></i> Aktualnie</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{{ route('job_create') }}"><i class="fas fa-plus-circle text-success mr-1"></i> Dodaj</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{{ route('jobs_deleted') }}"><i class="far fa-trash-alt text-danger mr-1"></i> Kosz</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{{ route('jobs_by_status', ['1']) }}"><i class="fa fa-play-circle text-danger mr-1"></i> Do zrobienia</a>
+                              <a class="dropdown-item" href="{{ route('jobs_by_status', ['2']) }}"><i class="fa fa-hourglass-half text-warning mr-1"></i> W trakcie</a>
+                              <a class="dropdown-item" href="{{ route('jobs_by_status', ['3']) }}"><i class="fa fa-check text-success mr-1"></i> Zrobione</a>
+                              <a class="dropdown-item" href="{{ route('jobs_by_status', ['4']) }}"><i class="fa fa-check-circle text-success mr-1"></i> Zatwierdzone</a>
+                            </div>
+                           
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['1']) }}"><i class="fa fa-play-circle"></i> Do zrobienia</a>
+                            <a class="nav-link" href="{{ route('users') }}"><i class="fas fa-user"></i> Użytkownicy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['2']) }}"><i class="fa fa-hourglass-half"></i> W trakcie</a>
+                            <a class="nav-link" href="#"><i class="fas fa-list"></i></i> Checklista</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}"><i class="fa fa-check"></i> Zrobione</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['4']) }}"><i class="fa fa-check-circle"></i> Zatwierdzone</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs_by_status', ['3']) }}">Kosz</a>
+                            <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Statystyki</a>
                         </li>
                     </ul>
                     <form class="form-inline">
