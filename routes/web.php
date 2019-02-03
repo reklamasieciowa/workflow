@@ -17,26 +17,30 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/jobs', 'JobController@index')->name('jobs');
-Route::get('/jobs/trash', 'JobController@trash')->name('jobs_deleted');
-Route::get('/jobs/{status}', 'JobController@index')->name('jobs_by_status');
+Route::prefix('jobs')->group(function () {
+	Route::get('', 'JobController@index')->name('jobs');
+	Route::get('trash', 'JobController@trash')->name('jobs_deleted');
+	Route::get('{status}', 'JobController@index')->name('jobs_by_status');
+});
 
-Route::get('/job/create', 'JobController@create')->name('job_create');
-Route::post('/job/create', 'JobController@store')->name('job_store');
+Route::prefix('job')->group(function () {
+	Route::get('create', 'JobController@create')->name('job_create');
+	Route::post('create', 'JobController@store')->name('job_store');
 
-Route::get('/job/{id}', 'JobController@show')->name('job');
+	Route::get('{id}', 'JobController@show')->name('job');
 
-Route::get('/job/edit/{id}', 'JobController@edit')->name('job_edit');
-Route::post('/job/update/{id}', 'JobController@update')->name('job_update');
-Route::get('/job/change-status/{id}', 'JobController@change_status')->name('job_status_change');
+	Route::get('edit/{id}', 'JobController@edit')->name('job_edit');
+	Route::post('update/{id}', 'JobController@update')->name('job_update');
+	Route::get('change-status/{id}', 'JobController@change_status')->name('job_status_change');
 
-Route::get('/job/destroy/{id}', 'JobController@destroy')->name('job_destroy');
+	Route::get('destroy/{id}', 'JobController@destroy')->name('job_destroy');
+});
 
+Route::prefix('task')->group(function () {
+	Route::get('change-status/{task}', 'TaskController@change_status')->name('task_status_change');
+});
 
-
-Route::get('/task/change-status/{task}', 'TaskController@change_status')->name('task_status_change');
-
-
-
-Route::get('/users', 'UserController@index')->name('users');
-Route::get('/user/{user}', 'UserController@show')->name('user');
+Route::prefix('users')->group(function () {
+	Route::get('', 'UserController@index')->name('users');
+	Route::get('{user}', 'UserController@show')->name('user');
+});

@@ -77,3 +77,41 @@ $('#addUser').click(function(){
         $('#user-name-def option:selected').remove();
     }
 });
+
+//case insensitive contains
+$.expr[':'].icontains = $.expr.createPseudo(function(text) {
+    return function(e) {
+        return $(e).text().toUpperCase().indexOf(text.toUpperCase()) >= 0;
+    };
+});
+
+//classList() for jQuery
+jQuery.fn.extend({
+  classList: function( value ) {
+    if( value ){
+      if( jQuery.isArray(value)){
+        this.attr('class', '')
+        for(var i in value){
+          this.addClass(value[i])
+        }
+        return this;
+      }
+      if( typeof value == 'string'){          
+        this.attr('class', '').addClass(value);
+        return this;
+      }
+    }
+    return this.attr('class').split(/\s+/)
+  }
+});
+
+$('#search').keyup(function(){
+   var txt = $('#search').val();
+
+   $('.searchable').addClass('hidden').removeClass('visible');
+   $('.searchable:icontains("'+txt+'")').removeClass('hidden').addClass('visible');
+
+   var visibleCount = $('.searchable.visible').length;
+
+   $('#count-total').html(visibleCount);
+});

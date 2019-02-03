@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +19,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $total = User::all()->count();
         $users = User::with('jobs')->get();
 
-        return view('front.users.index_table', compact('users'));
+        return view('front.users.index', compact('users', 'total'));
     }
 
     /**
@@ -48,7 +54,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        $total = $user->jobs->count();
+        return view('front.users.show', compact('user','total'));
     }
 
     /**
@@ -82,6 +89,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        //detach jobs
     }
 }

@@ -37,13 +37,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Statystyki</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Ustawienia</a>
+                        </li>
                     </ul>
-                    <form class="form-inline">
+<!--                     <form class="form-inline">
                         <div class="md-form my-0">
                           <input class="form-control mr-sm-2" type="text" placeholder="Szukaj" aria-label="Szukaj">
                         </div>
                         <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Szukaj</button>
-                    </form>
+                    </form> -->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

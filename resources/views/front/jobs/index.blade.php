@@ -4,8 +4,14 @@
 <div class="container pt-4">
 
  <div class="row">
-     <div class="col-lg-12">
-      <h2>Wszystkie projekty: {{$total}} <a href="#" class="text-muted"><i class="fas fa-grip-horizontal mx-2"></i></a> <a href="#" class="text-muted"><i class="fas fa-list"></i></a></h2>
+     <div class="col-lg-6">
+      <h2>Wszystkie projekty: <span id="count-total">{{ $total }}</span> <a href="#" class="text-muted"><i class="fas fa-grip-horizontal mx-2"></i></a> <a href="#" class="text-muted"><i class="fas fa-list"></i></a></h2>
+    </div>
+        <div class="col-lg-6">
+      <div class="md-form mt-3">
+        <input type="text" id="search" class="form-control">
+        <label for="search">Szukaj</label>
+      </div>
     </div>
  </div>
 <div class="row">
@@ -24,6 +30,7 @@
     @endif
 
     <!-- Card -->
+    <div class="searchable">
     <div class="card mt-4 mb-0">
         @if($job->trashed())
           <div class="jobs-trashed">
@@ -108,6 +115,7 @@
       </div>
     </div>
 
+
     <div class="actions mt-0 text-center">
       <div class="btn-group" role="group" aria-label="edycja">
           <a href="{{ route('job', [$job->id]) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-eye text-white fa-lg"></i></a>
@@ -115,7 +123,7 @@
           <a href="{{ route('job_destroy', [$job->id]) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-alt text-white fa-lg"></i></a>
       </div>
     </div>
-
+</div>
     <!-- Card -->
 
 
